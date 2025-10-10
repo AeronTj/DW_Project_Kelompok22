@@ -6,8 +6,8 @@ services:
     hostname: sqlserver
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=${MSSQL_SA_PASSWORD:-PTXYZSecure123!}
-      - MSSQL_SA_PASSWORD=${MSSQL_SA_PASSWORD:-PTXYZSecure123!}
+      - SA_PASSWORD=${MSSQL_SA_PASSWORD:-DataWarehouse_2025!}
+      - MSSQL_SA_PASSWORD=${MSSQL_SA_PASSWORD:-DataWarehouse_2025!}
       - MSSQL_PID=${MSSQL_PID:-Express}
       - MSSQL_USER=sa
     ports:
@@ -21,7 +21,7 @@ services:
       - dw_network
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P 'PTXYZSecure123!' -Q 'SELECT 1' -C -N"]
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P 'DataWarehouse_2025!' -Q 'SELECT 1' -C -N"]
       interval: 30s
       timeout: 10s
       retries: 10
