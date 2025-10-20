@@ -3,7 +3,7 @@
 Dokumen ini merangkum cara menjalankan, memvalidasi, dan memahami arsitektur Data Warehouse PT XYZ sesuai implementasi pada repository ini. Seluruh isi disusun agar konsisten dengan README.md dan artefak yang sudah kita bangun (Docker Compose, skrip ETL, dan tes validasi).
 
 
-## 1) Ringkas Arsitektur (Gambar Sederhana)
+## 1) Arsitektur
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
@@ -171,7 +171,7 @@ CSV (data/) → Extract (pandas) → staging.* → Transform (SQL) → dim.* →
 - Orkestrasi end‑to‑end: `Makefile`, `scripts/run_all.sh`, dan `scripts/wait-for-sqlserver.sh` agar proses otomatis dan mudah diulang.
 - Konfigurasi Compose diperluas: mount `./tests` ke container SQL Server, serta pass‑through env DB ke container Airflow.
 
-## 14) Dokumentasi Perubahan Hard-coded → Otomatis (Before/After)
+## 14) Dokumentasi Perubahan Hardcoded → Otomatis (Before/After)
 
 ### 14.1 `.env`
 
@@ -403,7 +403,7 @@ return pymssql.connect(
 - Simpan `.env` di luar Git untuk lingkungan produksi, atau gunakan Docker secrets/variable injection CI/CD.
 
 
-## 17) Shutdown dan Start Ulang (Aman)
+## 17) Shutdown dan Start Ulang
 
 - Shutdown:
   - Hentikan service: `docker compose stop` (data aman), atau `docker compose down` (hapus containers, simpan volumes).
