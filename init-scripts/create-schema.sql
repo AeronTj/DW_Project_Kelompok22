@@ -1,6 +1,11 @@
 -- PT XYZ Data Warehouse - Database Schema Creation Script
 -- Created: 2025-05-24
 -- Description: Creates dimensional model for PT XYZ mining data warehouse
+IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'PTXYZ_DataWarehouse')
+BEGIN
+    CREATE DATABASE PTXYZ_DataWarehouse;
+END;
+GO
 
 USE PTXYZ_DataWarehouse;
 GO

@@ -1,0 +1,7 @@
+* text=auto
+
+# Enforce LF for scripts and code executed in Linux containers
+*.sh text eol=lf
+*.sql text eol=lf
+*.py text eol=lf
+

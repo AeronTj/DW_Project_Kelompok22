@@ -34,14 +34,20 @@ dag = DAG(
 )
 
 def get_sql_connection():
-    """Get SQL Server connection"""
-    sql_password = os.getenv('MSSQL_SA_PASSWORD', 'PTXYZSecure123!')
-    
+    """Get SQL Server connection from environment variables"""
+    sql_password = os.getenv('MSSQL_SA_PASSWORD') or os.getenv('SA_PASSWORD')
+    if not sql_password:
+        raise ValueError('MSSQL_SA_PASSWORD/SA_PASSWORD is not set')
+    server = os.getenv('MSSQL_HOST', 'sqlserver')
+    port = int(os.getenv('MSSQL_PORT', '1433'))
+    database = os.getenv('MSSQL_DB', 'PTXYZ_DataWarehouse')
+    user = os.getenv('MSSQL_USER', 'sa')
+
     return pymssql.connect(
-        server='ptxyz_sqlserver',
-        port=1433,
-        database='PTXYZ_DataWarehouse',
-        user='sa',
+        server=server,
+        port=port,
+        database=database,
+        user=user,
         password=sql_password,
         timeout=30
     )
